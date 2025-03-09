@@ -4,11 +4,11 @@
 This project is a **Spotify Clone** built using **React.js** for the frontend and **Node.js** for the backend. It allows users to stream music, create playlists, and manage their accounts.
 
 ## Features
-- 🎵 **Music Streaming** (Play, Pause, Skip)
-- 🔍 **Search Songs, Artists, and Albums**
-- 🔐 **User Authentication (Signup/Login with JWT)**
-- 📜 **Create & Manage Playlists**
-- 📱 **Fully Responsive UI**
+- **Music Streaming** (Play, Pause, Skip)
+- **Search Songs, Artists, and Albums**
+- **User Authentication (Signup/Login with JWT)**
+- **Create & Manage Playlists**
+- **Fully Responsive UI**
 
 ## Tech Stack
 ### **Frontend**

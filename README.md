@@ -1,43 +1,29 @@
-Spotify Clone
+# Spotify Clone
 
-Overview
+## Overview
+This project is a **Spotify Clone** built using **React.js** for the frontend and **Node.js** for the backend. It allows users to stream music, create playlists, and manage their accounts.
 
-The Spotify Clone is a full-stack web application that replicates core features of Spotify, including music streaming, user authentication, playlists, and search functionality. The project is built using React.js for the frontend and Node.js for the backend.
+## Features
+- 🎵 **Music Streaming** (Play, Pause, Skip)
+- 🔍 **Search Songs, Artists, and Albums**
+- 🔐 **User Authentication (Signup/Login with JWT)**
+- 📜 **Create & Manage Playlists**
+- 📱 **Fully Responsive UI**
 
-Features
+## Tech Stack
+### **Frontend**
+- React.js (Vite)
+- Tailwind CSS (Styling)
+- React Router
 
-User Authentication (Signup/Login)
+### **Backend**
+- Node.js (Express.js)
+- MongoDB (Database)
+- JWT (Authentication)
 
-Music Streaming (Play, Pause, Skip)
+## Setup Instructions
 
-Search Functionality (Songs, Artists, Albums)
-
-Playlist Management (Create, Edit, Delete Playlists)
-
-Responsive UI
-
-Tech Stack
-
-Frontend
-
-React.js (with Vite)
-
-Tailwind CSS (for styling)
-
-React Router (for navigation)
-
-Backend
-
-Node.js (Express.js)
-
-MongoDB (for database storage)
-
-JWT Authentication
-
-Installation & Setup
-
-Prerequisites
-
-Node.js installed
-
-MongoDB installed or an online MongoDB Atlas instance
+### **1. Clone the Repository**
+```sh
+git clone https://github.com/yourusername/spotify-clone.git
+cd spotify-clone

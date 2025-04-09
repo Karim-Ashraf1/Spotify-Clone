@@ -1,5 +1,5 @@
-const {Router} = require('express');
-const {authCallback} = require('../controllers/auth.controller');
+import { Router } from "express";
+import { authCallback } from "../controllers/auth.controller.js";
 
 const router = Router();
 

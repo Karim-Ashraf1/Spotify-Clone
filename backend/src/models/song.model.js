@@ -1,4 +1,4 @@
-const {mongoose} = require('mongoose');
+import mongoose from "mongoose";
 
 const songSchema = new mongoose.Schema({
     title: {
@@ -14,7 +14,7 @@ const songSchema = new mongoose.Schema({
         required: true
     },
     audioUrl: {
-        type: Date,
+        type: String,
         required: true
     },
     duration: {

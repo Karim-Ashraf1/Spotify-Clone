@@ -1,4 +1,4 @@
-const {mongoose} = require('mongoose');
+import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
     fullName: {
@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    clarkId: {
+    clerkId: {
         type: String,
         required: true,
         unique: true

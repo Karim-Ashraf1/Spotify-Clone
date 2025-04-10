@@ -7,7 +7,7 @@ export default {
   ],
   theme: {
   	extend: {
-		borederColor:{
+		borderColor:{
 			DEFAULT: 'hsl(var(--border))', // Creates 'border-border' class
 		},
   		borderRadius: {

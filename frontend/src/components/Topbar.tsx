@@ -5,6 +5,7 @@ import SignInOAuthButtons from "./SignInOAuthButtons";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "./ui/button";
+import SearchBar from "./SearchBar";
 
 const Topbar = () => {
 	const { isAdmin } = useAuthStore();
@@ -16,9 +17,14 @@ const Topbar = () => {
       backdrop-blur-md z-10
     '
 		>
-			<div className='flex gap-2 items-center'>
-				<img src='/spotify.png' className='size-8' alt='Spotify logo' />
-				Spotify
+			<div className='flex gap-4 items-center'>
+				<div className='flex items-center gap-2'>
+					<img src='/spotify.png' className='size-8' alt='Spotify logo' />
+					<span className='font-semibold'>Spotify</span>
+				</div>
+				<div className='ml-4 hidden md:block w-64'>
+					<SearchBar />
+				</div>
 			</div>
 			<div className='flex items-center gap-4'>
 				{isAdmin && (

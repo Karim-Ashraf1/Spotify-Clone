@@ -4,7 +4,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import { useMusicStore } from "@/stores/useMusicStore";
 import { SignedIn } from "@clerk/clerk-react";
-import { HomeIcon, Library } from "lucide-react";
+import { HomeIcon, Library, Search } from "lucide-react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
@@ -19,8 +19,6 @@ const LeftSidebar = () => {
 
   return (
     <div className="h-full flex flex-col gap-2">
-      {/* Navigation menu */}
-
       <div className="rounded-lg bg-zinc-900 p-4">
         <div className="space-y-2">
           <Link
@@ -35,10 +33,22 @@ const LeftSidebar = () => {
             <HomeIcon className="mr-2 size-5" />
             <span className="hidden md:inline">Home</span>
           </Link>
+          
+          <Link
+            to={"/search"}
+            className={cn(
+              buttonVariants({
+                variant: "ghost",
+                className: "w-full justify-start text-white hover:bg-zinc-800",
+              })
+            )}
+          >
+            <Search className="mr-2 size-5" />
+            <span className="hidden md:inline">Search</span>
+          </Link>
         </div>
       </div>
 
-      {/* Library section */}
       <div className="flex-1 rounded-lg bg-zinc-900 p-4">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center text-white px-2">

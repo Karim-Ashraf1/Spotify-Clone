@@ -4,6 +4,7 @@ import AuthCallbackPage from "./pages/auth-callback/AuthCallbackPage";
 import { AuthenticateWithRedirectCallback } from "@clerk/clerk-react";
 import MainLayout from "./layout/MainLayout";
 import AdminPage from "./pages/admin/AdminPage";
+import SearchResultsPage from "./pages/search/SearchResultsPage";
 import { Toaster } from "react-hot-toast";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
       <Route path="/admin" element={<AdminPage />} />
       <Route element={<MainLayout />}>
         <Route path="/" element={<HomePage />} />
+        <Route path="/search" element={<SearchResultsPage />} />
       </Route>
     </Routes>
 

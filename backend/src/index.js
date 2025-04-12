@@ -1,5 +1,9 @@
 import express from "express";
 import dotenv from "dotenv";
+
+
+dotenv.config();
+
 import { clerkMiddleware } from "@clerk/express";
 import fileUpload from "express-fileupload";
 import path from "path";
@@ -14,23 +18,19 @@ import albumRoutes from "./Routes/album.route.js";
 import statRoutes from "./Routes/stat.route.js";
 import searchRoutes from "./Routes/search.route.js";
 
-dotenv.config();
-
 const app = express();
 const __dirname = path.resolve();
 
 const PORT = process.env.PORT;
 
+app.use(cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+}));
+
 app.use(express.json());
 app.use(clerkMiddleware());
 
-// Configure CORS with specific options
-app.use(cors({
-    origin: ['http://localhost:5174', 'http://localhost:3000'],
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'x-clerk-auth-token'],
-    credentials: true
-}));
 
 app.use(fileUpload({
     useTempFiles: true,
@@ -42,6 +42,13 @@ app.use(fileUpload({
 })
 );
 
+// Log environment variables during startup (for debugging)
+console.log("Environment variables:", {
+    PORT: process.env.PORT,
+    MONGODB_URI: process.env.MONGODB_URI ? "DEFINED" : "UNDEFINED",
+    NODE_ENV: process.env.NODE_ENV,
+    ADMIN_EMAIL: process.env.ADMIN_EMAIL ? "DEFINED" : "UNDEFINED"
+});
 
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);

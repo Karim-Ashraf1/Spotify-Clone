@@ -31,7 +31,7 @@ export const createSong = async (req, res, next) => {
         const song = new Song({
             title,
             artist,
-            imageUrl,
+            audioUrl,
             imageUrl,
             duration,
             albumId: albumId || null,
@@ -40,7 +40,7 @@ export const createSong = async (req, res, next) => {
         await song.save();
 
         if(albumId){
-            await Album.findByAndUpdate(albumId,{
+            await Album.findByIdAndUpdate(albumId,{
                 $push:{songs: song._id},
             });
         }
@@ -64,7 +64,7 @@ export const deleteSong = async (req, res, next) => {
             });
         }
 
-        await song.findByAndUpdate(id);
+        await Song.findByIdAndDelete(id);
 
         res.status(200).json({message: 'Song deleted successfully'});
     } catch (error) {

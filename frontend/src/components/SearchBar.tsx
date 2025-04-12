@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { axiosInstance } from "../lib/axios";
-import { useNavigate } from "react-router-dom";
-import { usePlayerStore } from "../stores/usePLayerStore";
+import { useNavigate, useLocation } from "react-router-dom";
+import { usePlayerStore } from "../stores/usePlayerStore";
 import { Song } from "@/types";
 
 type Suggestion = {
@@ -33,7 +33,14 @@ export default function SearchBar() {
   const [isLoading, setIsLoading] = useState(false);
   const searchTimeoutRef = useRef<number | null>(null);
   const navigate = useNavigate();
+  const location = useLocation();
   const { setCurrentSong } = usePlayerStore();
+  
+  useEffect(() => {
+    if (location.pathname === '/search') {
+      setShowSuggestions(false);
+    }
+  }, [location]);
   
   useEffect(() => {
     if (searchQuery.length < 2) {
@@ -106,8 +113,23 @@ export default function SearchBar() {
     navigate(`/search?query=${encodeURIComponent(suggestion)}`);
   };
   
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Node;
+      const searchContainer = document.querySelector('.search-container');
+      if (searchContainer && !searchContainer.contains(target)) {
+        setShowSuggestions(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+  
   return (
-    <div className="relative w-full max-w-md">
+    <div className="relative w-full max-w-md search-container">
       <form onSubmit={handleSearch} className="relative">
         <input
           type="text"

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { axiosInstance } from "../../lib/axios";
-import { usePlayerStore } from "../../stores/usePLayerStore";
+import { usePlayerStore } from "../../stores/usePlayerStore";
 import Topbar from "@/components/Topbar";
 import { Song as SongType } from "@/types";
 
@@ -103,7 +103,7 @@ export default function SearchResultsPage() {
       <main className="rounded-md overflow-hidden h-full bg-gradient-to-b from-zinc-800 to-zinc-900">
         <Topbar />
         <div className="container mx-auto px-4 py-8">
-          <h1 className="text-2xl font-bold mb-8">Search Results for "{query}"</h1>
+          <h1 className="text-2xl font-bold mb-8">Search Results for {query}</h1>
           <p className="text-center text-gray-400">No results found. Try another search term.</p>
         </div>
       </main>

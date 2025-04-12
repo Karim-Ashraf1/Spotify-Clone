@@ -113,7 +113,8 @@ export const useMusicStore = create<MusicStore>((set) => ({
 
 		try {
 			const response = await axiosInstance.get("/albums");
-			set({ albums: response?.data || [] });
+			// set({ albums: response?.data || [] });
+			set({ albums: Array.isArray(response?.data) ? response.data : [] });
 		} catch (error: any) {
 			console.error("Error fetching albums:", error);
 			set({ error: error?.response?.data?.message || "Failed to fetch albums" });
@@ -127,7 +128,7 @@ export const useMusicStore = create<MusicStore>((set) => ({
 		set({ isLoading: true, error: null });
 		try {
 			const response = await axiosInstance.get(`/albums/${id}`);
-			set({ currentAlbum: response?.data || null });
+			set({ currentAlbum: response?.data });
 		} catch (error: any) {
 			console.error(`Error fetching album ${id}:`, error);
 			set({ error: error?.response?.data?.message || "Failed to fetch album" });
@@ -155,6 +156,7 @@ export const useMusicStore = create<MusicStore>((set) => ({
 		try {
 			const response = await axiosInstance.get("/songs/made-for-you");
 			set({ madeForYouSongs: response?.data || [] });
+			// set({ madeForYouSongs: Array.isArray(response?.data) ? response.data : [] });
 		} catch (error: any) {
 			console.error("Error fetching made for you songs:", error);
 			set({ error: error?.response?.data?.message || "Failed to fetch personalized songs" });

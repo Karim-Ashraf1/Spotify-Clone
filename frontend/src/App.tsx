@@ -5,6 +5,7 @@ import { AuthenticateWithRedirectCallback } from "@clerk/clerk-react";
 import MainLayout from "./layout/MainLayout";
 import AdminPage from "./pages/admin/AdminPage";
 import SearchResultsPage from "./pages/search/SearchResultsPage";
+import AlbumPage from "./pages/album/AlbumPage";
 import { Toaster } from "react-hot-toast";
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
       <Route element={<MainLayout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/search" element={<SearchResultsPage />} />
+        <Route path="/albums/:albumId" element={<AlbumPage />} />
       </Route>
     </Routes>
 

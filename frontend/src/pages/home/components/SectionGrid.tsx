@@ -2,6 +2,7 @@ import { Song } from "@/types";
 import SectionGridSkeleton from "./SectionGridSkeleton";
 import { Button } from "@/components/ui/button";
 import PlayButton from "./PlayButton";
+import LikeButton from "@/components/LikeButton";
 
 type SectionGridProps = {
 	title: string;
@@ -37,7 +38,10 @@ const SectionGrid = ({ songs, title, isLoading }: SectionGridProps) => {
 							</div>
 							<PlayButton song={song} />
 						</div>
-						<h3 className='font-medium mb-2 truncate'>{song.title}</h3>
+						<div className="flex items-center justify-between mb-1">
+							<h3 className='font-medium truncate'>{song.title}</h3>
+							<LikeButton songId={song._id} size="sm" initialLiked={song.isLiked} />
+						</div>
 						<p className='text-sm text-zinc-400 truncate'>{song.artist}</p>
 					</div>
 				))}

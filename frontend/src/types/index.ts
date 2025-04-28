@@ -8,6 +8,7 @@ export interface Song {
 	duration: number;
 	createdAt: string;
 	updatedAt: string;
+	isLiked?: boolean;
 }
 
 export interface Album {
@@ -40,4 +41,24 @@ export interface User {
 	clerkId: string;
 	fullName: string;
 	imageUrl: string;
+}
+
+export interface Like {
+	_id: string;
+	userId: string;
+	songId: string;
+	createdAt: string;
+	updatedAt: string;
+}
+
+export interface Comment {
+	_id: string;
+	userId: string;
+	albumId: string;
+	commentText: string;
+	parentCommentId: string | null;
+	createdAt: string;
+	updatedAt: string;
+	user?: User;
+	replies?: Comment[];
 }

@@ -1,10 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useMusicStore } from "@/stores/useMusicStore";
-import { usePlayerStore } from "@/stores/usePlayerStore";
+import { usePlayerStore } from "@/stores/usePLayerStore";
 import { Clock, Pause, Play } from "lucide-react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import LikeButton from "@/components/LikeButton";
+import CommentSection from "@/components/CommentSection";
 
 export const formatDuration = (seconds: number) => {
 	const minutes = Math.floor(seconds / 60);
@@ -91,7 +93,7 @@ const AlbumPage = () => {
 						<div className='bg-black/20 backdrop-blur-sm'>
 							{/* table header */}
 							<div
-								className='grid grid-cols-[16px_4fr_2fr_1fr] gap-4 px-10 py-2 text-sm 
+								className='grid grid-cols-[16px_4fr_2fr_1fr_40px] gap-4 px-10 py-2 text-sm 
             text-zinc-400 border-b border-white/5'
 							>
 								<div>#</div>
@@ -100,6 +102,7 @@ const AlbumPage = () => {
 								<div>
 									<Clock className='h-4 w-4' />
 								</div>
+								<div></div>
 							</div>
 
 							{/* songs list */}
@@ -111,12 +114,14 @@ const AlbumPage = () => {
 										return (
 											<div
 												key={song._id}
-												onClick={() => handlePlaySong(index)}
-												className={`grid grid-cols-[16px_4fr_2fr_1fr] gap-4 px-4 py-2 text-sm 
+												className={`grid grid-cols-[16px_4fr_2fr_1fr_40px] gap-4 px-4 py-2 text-sm 
                       text-zinc-400 hover:bg-white/5 rounded-md group cursor-pointer
                       `}
 											>
-												<div className='flex items-center justify-center'>
+												<div 
+													className='flex items-center justify-center'
+													onClick={() => handlePlaySong(index)}
+												>
 													{isCurrentSong && isPlaying ? (
 														<div className='size-4 text-green-500'>♫</div>
 													) : (
@@ -127,7 +132,10 @@ const AlbumPage = () => {
 													)}
 												</div>
 
-												<div className='flex items-center gap-3'>
+												<div 
+													className='flex items-center gap-3'
+													onClick={() => handlePlaySong(index)}
+												>
 													<img src={song.imageUrl} alt={song.title} className='size-10' />
 
 													<div>
@@ -135,13 +143,31 @@ const AlbumPage = () => {
 														<div>{song.artist}</div>
 													</div>
 												</div>
-												<div className='flex items-center'>{song.createdAt.split("T")[0]}</div>
-												<div className='flex items-center'>{formatDuration(song.duration)}</div>
+												<div 
+													className='flex items-center'
+													onClick={() => handlePlaySong(index)}
+												>
+													{song.createdAt.split("T")[0]}
+												</div>
+												<div 
+													className='flex items-center'
+													onClick={() => handlePlaySong(index)}
+												>
+													{formatDuration(song.duration)}
+												</div>
+												<div className='flex items-center justify-center'>
+													<LikeButton songId={song._id} size="sm" initialLiked={song.isLiked} />
+												</div>
 											</div>
 										);
 									})}
 								</div>
 							</div>
+						</div>
+						
+						{/* Comment Section */}
+						<div className="px-6 py-8">
+							{albumId && <CommentSection albumId={albumId} />}
 						</div>
 					</div>
 				</div>

@@ -29,6 +29,7 @@ app.use(cors({
     origin: "http://localhost:3000",
     credentials: true,
 }));
+app.use(express.static('public'));
 
 app.use(express.json());
 app.use(clerkMiddleware());

@@ -3,21 +3,12 @@ import { useSearchParams } from "react-router-dom";
 import { axiosInstance } from "../../lib/axios";
 import { usePlayerStore } from "../../stores/usePlayerStore";
 import Topbar from "@/components/Topbar";
-import { Song as SongType } from "@/types";
-
-interface Song extends SongType {}
-
-interface Album {
-  _id: string;
-  title: string;
-  artist: string;
-  imageUrl: string;
-  releaseYear: number;
-  songs?: SongType[];
-}
+import { Song, Album } from "@/types";
 
 interface Artist {
+  _id: string;
   name: string;
+  imageUrl?: string;
 }
 
 interface SearchResults {

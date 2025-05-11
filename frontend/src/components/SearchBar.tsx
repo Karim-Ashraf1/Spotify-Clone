@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { axiosInstance } from "../lib/axios";
 import { useNavigate, useLocation } from "react-router-dom";
-import { usePlayerStore } from "../stores/usePLayerStore";
-import { Song } from "@/types";
+import { usePlayerStore } from "../stores/usePlayerStore";
+import { Song, Album } from "@/types";
 
 type Suggestion = {
   songTitles: string[];
@@ -10,20 +10,16 @@ type Suggestion = {
   albumTitles: string[];
 };
 
+interface Artist {
+  _id: string;
+  name: string;
+  imageUrl?: string;
+}
+
 interface SearchResponse {
-  songs: Array<{
-    _id: string;
-    title: string;
-    artist: string;
-    imageUrl: string;
-    audioUrl: string;
-    duration: number;
-    albumId?: string | null;
-    createdAt?: string;
-    updatedAt?: string;
-  }>;
-  albums: any[];
-  artists: any[];
+  songs: Song[];
+  albums: Album[];
+  artists: Artist[];
 }
 
 export default function SearchBar() {
@@ -31,7 +27,7 @@ export default function SearchBar() {
   const [suggestions, setSuggestions] = useState<Suggestion | null>(null);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const searchTimeoutRef = useRef<number | null>(null);
+  const searchTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const navigate = useNavigate();
   const location = useLocation();
   const { setCurrentSong } = usePlayerStore();
@@ -52,7 +48,7 @@ export default function SearchBar() {
       clearTimeout(searchTimeoutRef.current);
     }
     
-    searchTimeoutRef.current = window.setTimeout(async () => {
+    searchTimeoutRef.current = setTimeout(async () => {
       try {
         setIsLoading(true);
         const response = await axiosInstance.get(`/search/suggestions?prefix=${searchQuery}`);
@@ -63,7 +59,7 @@ export default function SearchBar() {
       } finally {
         setIsLoading(false);
       }
-    }, 300) as unknown as number;
+    }, 300);
     
     return () => {
       if (searchTimeoutRef.current) {

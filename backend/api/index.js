@@ -9,16 +9,16 @@ import fileUpload from "express-fileupload";
 import path from "path";
 import cors from "cors";
 
-import { connectDB } from "./lib/db.js";
-import userRoutes from "./Routes/user.route.js";
-import adminRoutes from "./Routes/admin.route.js";
-import authRoutes from "./Routes/auth.route.js";
-import songRoutes from "./Routes/song.route.js";
-import albumRoutes from "./Routes/album.route.js";
-import statRoutes from "./Routes/stat.route.js";
-import searchRoutes from "./Routes/search.route.js";
-import likeRoutes from "./Routes/like.route.js";
-import commentRoutes from "./Routes/comment.route.js";
+import { connectDB } from "../src/lib/db.js";
+import userRoutes from "../src/Routes/user.route.js";
+import adminRoutes from "../src/Routes/admin.route.js";
+import authRoutes from "../src/Routes/auth.route.js";
+import songRoutes from "../src/Routes/song.route.js";
+import albumRoutes from "../src/Routes/album.route.js";
+import statRoutes from "../src/Routes/stat.route.js";
+import searchRoutes from "../src/Routes/search.route.js";
+import likeRoutes from "../src/Routes/like.route.js";
+import commentRoutes from "../src/Routes/comment.route.js";
 
 const app = express();
 const __dirname = path.resolve();
@@ -64,6 +64,10 @@ app.use("/api/comments", commentRoutes);
 
 app.use((error, req, res, next) => {
     res.status(500).send({message: process.env.NODE_ENV === "production" ? "Internal server error" : error.message});
+});
+
+app.get('/spotify', (req, res) => {
+    res.json({ message: 'Spotify API is running' });
 });
 
 app.listen(PORT, () => {

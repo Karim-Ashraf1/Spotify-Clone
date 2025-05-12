@@ -28,7 +28,9 @@ const __dirname = path.resolve();
 const PORT = process.env.PORT;
 
 app.use(cors({
-    origin: "http://localhost:3000",
+    origin: process.env.NODE_ENV === "production" 
+        ? [process.env.FRONTEND_URL || "*"] 
+        : "http://localhost:3000",
     credentials: true,
 }));
 app.use(express.static('public'));

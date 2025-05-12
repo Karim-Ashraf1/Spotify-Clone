@@ -66,7 +66,7 @@ app.use((error, req, res, next) => {
     res.status(500).send({message: process.env.NODE_ENV === "production" ? "Internal server error" : error.message});
 });
 
-app.get('/spotify', (req, res) => {
+app.get('/', (req, res) => {
     res.json({ message: 'Spotify API is running' });
 });
 

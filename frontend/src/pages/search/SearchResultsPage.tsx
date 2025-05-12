@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import { axiosInstance } from "../../lib/axios";
-import { usePlayerStore } from "../../stores/usePlayerStore";
+import { axiosInstance } from "@/lib/axios";
+import { usePlayerStore } from "@/stores/usePlayerStore";
 import Topbar from "@/components/Topbar";
 import { Song, Album } from "@/types";
 

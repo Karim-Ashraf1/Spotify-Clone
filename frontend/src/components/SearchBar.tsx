@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { axiosInstance } from "@/lib/axios";
 import { useNavigate, useLocation } from "react-router-dom";
-import { usePlayerStore } from "@/stores/usePlayerStore";
+import { usePlayerStore } from "@/stores/usePLayerStore";
 import { Song, Album } from "@/types";
 
 type Suggestion = {

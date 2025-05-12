@@ -6,6 +6,7 @@ import { useAuthStore } from "@/stores/useAuthStore";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "./ui/button";
 import SearchBar from "./SearchBar";
+import StreamingNav from "./StreamingNav";
 
 const Topbar = () => {
 	const { isAdmin } = useAuthStore();
@@ -27,6 +28,7 @@ const Topbar = () => {
 				</div>
 			</div>
 			<div className='flex items-center gap-4'>
+				<StreamingNav />
 				{isAdmin && (
 					<Link to={"/admin"} className={cn(buttonVariants({ variant: "outline" }))}>
 						<LayoutDashboardIcon className='size-4  mr-2' />
